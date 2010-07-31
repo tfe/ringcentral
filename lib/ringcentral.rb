@@ -9,6 +9,35 @@ module RingCentral
     PATH = 'faxapi.asp'
     URL = [RingCentral::URL, PATH].join('/')
     
+    STATUS_CODES = {
+      0 => 'Successful',
+      1 => 'Authorization failed',
+      2 => 'Faxing is prohibited for the account',
+      3 => 'No recipients specified',
+      4 => 'No fax data specified',
+      5 => 'Generic error'
+    }
+    
+    def self.send(username, password, extension, recipient, attachment, cover_page = 'None', cover_page_text = nil, resolution = nil, send_time = nil)
+      
+      params = {
+        :attachment => attachment,
+        :recipient => recipient,
+        :coverpage => cover_page,
+        :coverpagetext => cover_page_text,
+        :resolution => resolution,
+        :sendtime => send_time
+      }
+      
+      username_with_extension = [username, extension].compact.join('*')
+      
+      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username_with_extension, password)))
+      
+      status_code = String.new(response.body).to_i # RestClient::Response casting to int behaves strangely
+      
+      return STATUS_CODES[status_code]
+    end
+    
   end
   
   class Phone
