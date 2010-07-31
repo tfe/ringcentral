@@ -30,10 +30,10 @@ module RingCentral
     }
     
     
-    def self.list(username, extension, password)
+    def self.list(username, password, extension)
       
       params = { :cmd => :list }
-      response = RestClient.post(URL, params.merge(credentials_hash(username, extension, password)))
+      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username, password, extension)))
       body = response.body
       
       if body[0..1] == SuccessResponse # sucessful responses start with "OK "
@@ -45,7 +45,7 @@ module RingCentral
     end
     
     
-    def self.call(username, extension, password, to, from, caller_id, prompt = 1)
+    def self.call(username, password, extension, to, from, caller_id, prompt = 1)
       
       params = {
         :cmd => :call,
@@ -54,7 +54,7 @@ module RingCentral
         :clid => caller_id,
         :prompt => prompt
       }
-      response = RestClient.post(URL, params.merge(credentials_hash(username, extension, password)))
+      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username, password, extension)))
       body = response.body
       
       if body[0..1] == SuccessResponse # sucessful responses start with "OK "
@@ -120,17 +120,17 @@ module RingCentral
         raise "RingCentral response: #{body}"
       end
     end
-    
-    
-    private
-    
-    def self.credentials_hash(username, extension, password)
-      {
-        :username => username,
-        :ext => extension,
-        :password => password
-      }
-    end
+  end
+  
+  
+  private
+  
+  def self.credentials_hash(username, password, extension = nil)
+    {
+      :username => username,
+      :password => password,
+      :ext => extension
+    }
   end
   
 end
