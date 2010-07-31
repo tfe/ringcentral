@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ringcentral"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A Ruby library for interacting with the RingCentral RingOut API and (coming soon) FaxOut API.}
+    gem.description = %Q{A Ruby library for interacting with the RingCentral RingOut API and (coming soon) FaxOut API.}
     gem.email = "todd@toddeichel.com"
     gem.homepage = "http://github.com/tfe/ringcentral"
     gem.authors = ["Todd Eichel"]
