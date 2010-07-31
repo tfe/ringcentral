@@ -71,14 +71,14 @@ module RingCentral
     #  - API always gives the "completed call" response regardless of whether the session ID is valid
     #  - while call is running (and for a few seconds after it is disconnected), status string with both callback 
     #    and destination number are given, with statuses for both; after that, only the session ID is given
-    def self.status(username, extension, password, session_id, ws = nil)
+    def self.status(session_id, ws = nil)
       
       params = {
         :cmd => :status,
         :sessionid => session_id,
         :ws => ws
       }
-      response = RestClient.post(URL, params.merge(credentials_hash(username, extension, password)))
+      response = RestClient.post(URL, params)
       body = response.body
       
       if body[0..1] == SuccessResponse # sucessful responses start with "OK "
@@ -103,14 +103,14 @@ module RingCentral
     end
     
     
-    def self.cancel(username, extension, password, session_id, ws = nil)
+    def self.cancel(session_id, ws = nil)
       
       params = {
         :cmd => :cancel,
         :sessionid => session_id,
         :ws => ws
       }
-      response = RestClient.post(URL, params.merge(credentials_hash(username, extension, password)))
+      response = RestClient.post(URL, params)
       body = response.body
       
       if body[0..1] == SuccessResponse # sucessful responses start with "OK "
