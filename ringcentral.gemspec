@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ringcentral}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Todd Eichel"]
-  s.date = %q{2010-07-31}
-  s.description = %q{A Ruby library for interacting with the RingCentral RingOut API and (coming soon) FaxOut API.}
+  s.date = %q{2010-08-12}
+  s.description = %q{A Ruby library for interacting with the RingCentral RingOut API and FaxOut API.}
   s.email = %q{todd@toddeichel.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{A Ruby library for interacting with the RingCentral RingOut API and (coming soon) FaxOut API.}
+  s.summary = %q{A Ruby library for interacting with the RingCentral RingOut API and FaxOut API.}
   s.test_files = [
     "test/helper.rb",
      "test/test_ringcentral.rb"
@@ -45,11 +45,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_runtime_dependency(%q<rest-client>, [">= 1.6.0"])
     else
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<rest-client>, [">= 1.6.0"])
     end
   else
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<rest-client>, [">= 1.6.0"])
   end
 end
 
