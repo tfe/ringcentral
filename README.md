@@ -1,7 +1,7 @@
 [ringcentral](http://github.com/tfe/ringcentral/)
 ========
 
-A Ruby library for interacting with the RingCentral [RingOut API](https://service.ringcentral.com/ringoutapi/) and (coming soon) [FaxOut API](https://service.ringcentral.com/faxoutapi/).
+A Ruby library for interacting with the RingCentral [RingOut API](https://service.ringcentral.com/ringoutapi/) and [FaxOut API](https://service.ringcentral.com/faxoutapi/).
 
 Currently it is a very thin wrapper around the native RingCentral HTTP API. Eventually I would like to document and abstract away as many of the idiosyncrasies of the native API as possible.
 
@@ -152,17 +152,41 @@ The response is simply the session ID in a hash. The same response is given no m
 
 ### FaxOut
 
-To be implemented.
+There is only one method for faxing: `send`.
+
+    RingCentral::Fax.send(username, password, extension, recipient, attachment, cover_page = 'None', cover_page_text = nil, resolution = nil, send_time = nil)
+
+Send a fax to a given recipient with a given attachment (`File` object) using a given cover page (default is to not use a cover page). If the cover page option is set to nil, the default cover page will be used. Other cover page options exist, but RingCentral does not specify how to use them (you could experiment by putting different names in this parameter).
+
+You can also specify text to include on the cover page, the resolution to use (possible values are `Low` and `High`), and the time to send (GMT time in the format `dd:mm:yy hh:mm`). If send time is invalid or not in the future, the fax will be sent immediately.
+
+Credentials work the same as with the phone methods, with the exception that you can pass `nil` as the extension number, in which case the master account is used.
+
+The response is a simple status string. Possible values are as follows:
+
+* Successful
+* Authorization failed
+* Faxing is prohibited for the account
+* No recipients specified
+* No fax data specified
+* Generic error
+
+Note that this only indicates the status of the request to send the fax; it does not tell you anything about whether the fax was transmitted successfully or not. There is no way to check programmatically for the status of a fax. However, you will get an email with the results of the fax job at the address corresponding to the credentials/account you used to send the fax.
+
+    >> RingCentral::Fax.send('5556090455', 'qwerty', '100', '5556465589', File.new('/path/to/file.pdf'))
+    => "Successful"
+
 
 
 Todo
 ----
 
 * Be able to supply RingCentral account credentials once, up-front, rather than supplying with each API call.
-* Wrap up the call, status, and cancel into a Call object which maintains its state.
+* Wrap up the Phone call, status, and cancel methods into a Call object which maintains its state.
 * Set Call command arguments using response from the List command, perhaps so a user could do `call(:from => :mobile)`
 * Determine how accepting the RingCentral APIs are of formatted or malformed input.
-* Implement the FaxOut API.
+* Accept more than one recipient for faxing; allow more than one attachment.
+* Allow fax send method to take a real ruby `Time` object for the send time.
 * Write tests.
 
 
