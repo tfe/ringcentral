@@ -156,7 +156,26 @@ There is only one method for faxing: `send`.
 
     RingCentral::Fax.send(username, password, extension, recipient, attachment, cover_page = 'None', cover_page_text = nil, resolution = nil, send_time = nil)
 
-Send a fax to a given recipient with a given attachment (`File` object) using a given cover page (default is to not use a cover page). If the cover page option is set to nil, the default cover page will be used. Other cover page options exist, but RingCentral does not specify how to use them (you could experiment by putting different names in this parameter).
+Send a fax to a given recipient with a given attachment (`File` object) using a given cover page (default is to not use a cover page). If the cover page option is set to nil, the default cover page will be used. Other cover page options exist, but RingCentral does not specify how to use them. Using RingCentral's FaxOut form, I was able to pull the values for each cover page:
+
+    COVERPAGES = {
+      "None"          => 0,
+      "Ancient"       => 1,
+      "Birthday"      => 2,
+      "Blank"         => 3,
+      "ClasMod"       => 4,
+      "Classic"       => 5,
+      "Confidential"  => 6,
+      "Contempo"      => 7,
+      "Elegant"       => 8,
+      "Express"       => 9,
+      "Formal"        => 10,
+      "Jazzy"         => 11,
+      "Modern"        => 12,
+      "Urgent"        => 13
+    }
+    
+    RingCentral::Fax.send(username, password, extension, recipient, attachment, cover_page = COVERPAGES["Modern"], cover_page_text = "Some really cool text", resolution = nil, send_time = nil)
 
 You can also specify text to include on the cover page, the resolution to use (possible values are `Low` and `High`), and the time to send (GMT time in the format `dd:mm:yy hh:mm`). If send time is invalid or not in the future, the fax will be sent immediately.
 
