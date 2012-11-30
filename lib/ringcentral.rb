@@ -19,7 +19,7 @@ module RingCentral
     }
     
     def self.send(username, password, extension, recipient, attachment, cover_page = 'None', cover_page_text = nil, resolution = nil, send_time = nil)
-      
+
       params = {
         :attachment => attachment,
         :recipient => recipient,
@@ -28,10 +28,10 @@ module RingCentral
         :resolution => resolution,
         :sendtime => send_time
       }
-      
+
       username_with_extension = [username, extension].compact.join('*')
       
-      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username_with_extension, password)))
+      response = RestClient.post(URL, RingCentral.credentials_hash(username_with_extension, password).merge(params))
       
       status_code = String.new(response.body).to_i # RestClient::Response casting to int behaves strangely
       
