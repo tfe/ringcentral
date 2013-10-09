@@ -18,10 +18,12 @@ module RingCentral
       5 => 'Generic error'
     }
     
-    def self.send(username, password, extension, recipient, attachment, resolution = nil, send_time = nil)
+    def self.send(username, password, extension, recipient, attachment, cover_page, cover_page_text , resolution = nil, send_time = nil)
 
       params = {
         :recipient => recipient,
+        :Coverpage => cover_page,
+        :Coverpagetext => cover_page_text,
         :resolution => resolution,
         :sendtime => send_time,
         :attachment => attachment
