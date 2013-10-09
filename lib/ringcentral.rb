@@ -23,8 +23,6 @@ module RingCentral
       params = {
         :attachment => attachment,
         :recipient => recipient,
-        :coverpage => cover_page,
-        :coverpagetext => cover_page_text,
         :resolution => resolution,
         :sendtime => send_time
       }
