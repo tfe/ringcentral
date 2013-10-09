@@ -21,10 +21,13 @@ module RingCentral
     def self.send(username, password, extension, recipient, attachment, cover_page = 'None', cover_page_text = nil, resolution = nil, send_time = nil)
 
       params = {
-        :attachment => attachment,
         :recipient => recipient,
+        :coverpage => cover_page,
+        :coverpagetext => cover_page_text,
         :resolution => resolution,
-        :sendtime => send_time
+        :sendtime => send_time,
+        :attachment => attachment
+
       }
 
       username_with_extension = [username, extension].compact.join('*')
