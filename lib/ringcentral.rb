@@ -18,20 +18,21 @@ module RingCentral
       5 => 'Generic error'
     }
     
-    def self.send(username, password, extension, recipient, attachment, cover_page = 'None', cover_page_text = nil, resolution = nil, send_time = nil)
+    def self.send(username, password, extension, recipient, attachment, cover_page, cover_page_text , resolution = nil, send_time = nil)
 
       params = {
-        :attachment => attachment,
         :recipient => recipient,
         :coverpage => cover_page,
         :coverpagetext => cover_page_text,
         :resolution => resolution,
-        :sendtime => send_time
+        :sendtime => send_time,
+        :attachment => attachment
+
       }
 
       username_with_extension = [username, extension].compact.join('*')
       
-      response = RestClient.post(URL, RingCentral.credentials_hash(username_with_extension, password).merge(params))
+      response = RestClient.post(URL, {:username => username_with_extension,:password => password}.merge(params))
       
       status_code = String.new(response.body).to_i # RestClient::Response casting to int behaves strangely
       
