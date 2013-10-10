@@ -18,7 +18,9 @@ module RingCentral
       5 => 'Generic error'
     }
     
+
     def self.send(username, password, extension, recipient, attachment, cover_page, cover_page_text , resolution = nil, send_time = nil)
+
 
       params = {
         :recipient => recipient,
@@ -29,10 +31,12 @@ module RingCentral
         :attachment => attachment
 
       }
-
+      
       username_with_extension = [username, extension].compact.join('*')
       
-      response = RestClient.post(URL, {:username => username_with_extension,:password => password}.merge(params))
+
+      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username_with_extension, password)))
+
       
       status_code = String.new(response.body).to_i # RestClient::Response casting to int behaves strangely
       
