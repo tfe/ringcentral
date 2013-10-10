@@ -8,8 +8,8 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="543c0700-7ee9-44e3-b72f-6e808a66b6ab" time="1381365088686" ignored="false" />
     <file path="/.gitignore" changelist="543c0700-7ee9-44e3-b72f-6e808a66b6ab" time="1381343272847" ignored="false" />
-    <file path="/ringcentral.rb" changelist="543c0700-7ee9-44e3-b72f-6e808a66b6ab" time="1381365112724" ignored="false" />
-    <file path="$PROJECT_DIR$/../EasyM/app/jobs/notify_job.rb" changelist="543c0700-7ee9-44e3-b72f-6e808a66b6ab" time="1381369802071" ignored="false" />
+    <file path="/ringcentral.rb" changelist="543c0700-7ee9-44e3-b72f-6e808a66b6ab" time="1381370355798" ignored="false" />
+    <file path="$PROJECT_DIR$/../EasyM/app/jobs/notify_job.rb" changelist="543c0700-7ee9-44e3-b72f-6e808a66b6ab" time="1381370417453" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="ringcentral.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/ringcentral.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.7364341">
+            <state line="13" column="116" selection-start="261" selection-end="261" vertical-scroll-proportion="0.1744186">
               <folding />
             </state>
           </provider>
@@ -364,7 +364,9 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lib/ringcentral.rb">
@@ -404,7 +406,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/ringcentral.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.7364341">
+        <state line="13" column="116" selection-start="261" selection-end="261" vertical-scroll-proportion="0.1744186">
           <folding />
         </state>
       </provider>
