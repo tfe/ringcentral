@@ -34,10 +34,9 @@ module RingCentral
 
       
       username_with_extension = [username, extension].compact.join('*')
-      
 
-      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username_with_extension, password)))
 
+      response = RestClient.post(URL, {:username => username_with_extension,:password => password}.merge(params))
       
       status_code = String.new(response.body).to_i # RestClient::Response casting to int behaves strangely
       
