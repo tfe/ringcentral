@@ -83,7 +83,7 @@ module RingCentral
         :clid => caller_id,
         :prompt => prompt
       }
-      response = RestClient.post(URL, params.merge(RingCentral.credentials_hash(username, password, extension)))
+      response = RestClient.get(URL, params: params.merge(RingCentral.credentials_hash(username, password, extension)))
       body = response.body
       
       if body[0..1] == SuccessResponse # sucessful responses start with "OK "
